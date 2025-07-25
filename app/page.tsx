@@ -78,7 +78,7 @@ export default function GremlinGoals() {
       setSuggestedGoals(data.goals)
     } catch (error) {
       // Fallback mock goals for demo
-      setSuggestedGoals(["Write one sentence in a journal", "Do 5 push-ups", "Read one page of any book"])
+      setSuggestedGoals(["Write one sentence in a document", "Do 5 push-ups", "Read one page of any book"])
     }
 
     setIsGenerating(false)
