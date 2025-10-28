@@ -8,6 +8,34 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ## Recent Changes (October 28, 2025)
 
+### Latest Updates: Design System Refinement & AI Integration
+
+**AI Integration Fixed**: Set up JavaScript OpenAI AI Integrations blueprint to resolve the "AI gateway is not enabled" error. The app now properly uses Replit-managed OpenAI access with environment variables configured automatically.
+
+**Typography Upgrade**: Replaced Fredoka with **Outfit** font - a more elegant, modern geometric typeface that maintains the playful feel while being less bold and more refined.
+
+**Design System Standardization**:
+- Created comprehensive button variant system with consistent states:
+  - `gremlin`: Primary gradient (purple → pink → purple) with glow
+  - `gremlin-pink`: Accent pink gradient for emphasis
+  - `success`: Green gradient for positive actions
+  - `secondary`: Green variant for secondary actions
+  - `destructive`: Red gradient for negative actions
+  - All variants include proper hover, active, and disabled states with scale animations
+- Standardized input fields with consistent focus states, borders, and transitions
+- All components now use design system tokens instead of custom classes
+
+**Custom Gremlin Character Assets**: Replaced emoji placeholders with custom-generated gremlin illustrations:
+- `gremlin-welcome.png`: Friendly mascot for welcome screen
+- `gremlin-thinking.png`: Contemplative for aspiration/assistant screens
+- `gremlin-celebrating.png`: Happy for trophy/success states
+- `gremlin-skeptical.png`: Snarky for check-in reminders
+
+**UX Improvements**:
+- Added Enter key handlers to aspiration input and manual goal fields for faster form submission
+- Optimized image loading with Next.js Image component and priority flags
+- Fixed CSS pointer-events issue that was blocking button clicks
+
 ### Complete UI Redesign with Personality & Brand
 
 Transformed the app from a minimal dark theme to a vibrant, playful experience that embodies the snarky gremlin personality.
@@ -22,7 +50,7 @@ Transformed the app from a minimal dark theme to a vibrant, playful experience t
   - Deep charcoal background with subtle gradients
 
 - **Typography**:
-  - Fredoka font for playful display headings
+  - Outfit font for elegant display headings
   - Inter font for clean body text
   - Better hierarchy with gradient text effects
 
@@ -33,7 +61,7 @@ Transformed the app from a minimal dark theme to a vibrant, playful experience t
   - Accessibility: Full `prefers-reduced-motion` support
 
 - **Visual Elements**:
-  - Placeholder gremlin character (👺 emoji) throughout
+  - Custom gremlin character illustrations across all screens
   - Speech bubbles for snarky comments
   - Rough card borders with gradient effects
   - Backdrop blur on cards for depth
