@@ -121,6 +121,10 @@ Replaced hardcoded fallback values with a flexible system that allows users to c
   - Seamless authentication via Replit environment variables
   - Costs billed to your Replit credits at public API prices
   - Available to paying users only (free users must use their own API key)
+- **Standard OpenAI API** (for external deployments like Netlify):
+  - Uses gpt-4o model with your own OPENAI_API_KEY
+  - Works on any hosting platform
+  - Costs billed directly to your OpenAI account
 - **Mode Selection UI**: Simple toggle between "AI Generated" and "Manual Entry" modes
   - AI mode is the default for best user experience
   - No authentication barriers for users

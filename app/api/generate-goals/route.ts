@@ -27,9 +27,12 @@ export async function POST(request: Request) {
       apiKey: useUserApiKey ? process.env.OPENAI_API_KEY : process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
     })
 
+    // Use gpt-5 for Replit AI Integrations, gpt-4o for standard OpenAI API
+    const modelName = useUserApiKey ? "gpt-4o" : "gpt-5"
+    
     const { text } = await generateText({
-      model: openai("gpt-5"),
-      temperature: 1, // GPT-5 only supports temperature=1
+      model: openai(modelName),
+      temperature: useUserApiKey ? 0.7 : 1, // GPT-5 only supports temperature=1, gpt-4o supports variable temperature
       prompt: `You are a brutally honest goal-setting assistant. A user wants to work on: "${aspiration}"
 
 Your job is to suggest 3 micro-goals that are:
