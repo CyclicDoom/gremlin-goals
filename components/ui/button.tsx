@@ -23,11 +23,11 @@ const buttonVariants = cva(
         success: "bg-gradient-to-br from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary text-secondary-foreground shadow-lg gremlin-glow-green hover:scale-105 active:scale-95",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-xl px-8 py-6 text-lg",
-        xl: "h-auto rounded-xl px-8 py-6 text-xl",
-        icon: "h-10 w-10",
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-sm",
+        lg: "h-11 rounded-xl px-6 py-3 text-base",
+        xl: "h-auto rounded-xl px-6 py-3 text-lg",
+        icon: "h-9 w-9",
       },
     },
     defaultVariants: {
