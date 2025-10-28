@@ -175,15 +175,8 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="mb-4 animate-bounce-subtle flex justify-center">
-              <Image 
-                src="/images/gremlin-welcome.png" 
-                alt="Gremlin mascot" 
-                width={200} 
-                height={200}
-                priority
-                className="drop-shadow-2xl"
-              />
+            <div className="mb-4 animate-bounce-subtle flex justify-center text-8xl">
+              👾
             </div>
           </div>
           
@@ -223,14 +216,8 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="mb-3 animate-wiggle flex justify-center">
-              <Image 
-                src="/images/gremlin-thinking.png" 
-                alt="Thinking gremlin" 
-                width={160} 
-                height={160}
-                className="drop-shadow-2xl"
-              />
+            <div className="mb-3 animate-wiggle flex justify-center text-7xl">
+              🤔
             </div>
             <div className="relative inline-block">
               <div className="bg-muted/90 backdrop-blur px-6 py-3 rounded-2xl border-2 border-accent/50 shadow-lg">
@@ -287,14 +274,8 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="mb-3 flex justify-center">
-              <Image 
-                src="/images/gremlin-thinking.png" 
-                alt="Gremlin assistant" 
-                width={160} 
-                height={160}
-                className={`drop-shadow-2xl ${isGenerating ? "animate-spin" : ""}`}
-              />
+            <div className={`mb-3 flex justify-center text-7xl ${isGenerating ? "animate-spin" : ""}`}>
+              🤔
             </div>
           </div>
           
@@ -469,14 +450,8 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="mb-3 flex justify-center">
-              <Image 
-                src={hasCheckedInToday ? "/images/gremlin-celebrating.png" : "/images/gremlin-skeptical.png"} 
-                alt="Gremlin check-in" 
-                width={160} 
-                height={160}
-                className="drop-shadow-2xl"
-              />
+            <div className="mb-3 flex justify-center text-7xl">
+              {hasCheckedInToday ? "🎉" : "🤨"}
             </div>
           </div>
           
@@ -573,14 +548,8 @@ export default function GremlinGoals() {
         
         <div className="animate-pop relative z-10 w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="mb-4 animate-bounce-subtle flex justify-center">
-              <Image 
-                src="/images/gremlin-celebrating.png" 
-                alt="Celebrating gremlin" 
-                width={200} 
-                height={200}
-                className="drop-shadow-2xl"
-              />
+            <div className="mb-4 animate-bounce-subtle flex justify-center text-8xl">
+              🎉
             </div>
           </div>
           

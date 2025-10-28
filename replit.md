@@ -41,12 +41,12 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 - Standardized input fields with consistent focus states, borders, and transitions
 - All components now use design system tokens instead of custom classes
 
-**Custom Gremlin Character Assets**: Replaced emoji placeholders with custom-generated gremlin illustrations:
-- `gremlin-welcome.png`: Friendly mascot for welcome screen (Note: AI-generated images have white backgrounds - manual removal recommended)
-- `gremlin-thinking.png`: Contemplative for aspiration/assistant screens
-- `gremlin-celebrating.png`: Happy for trophy/success states
-- `gremlin-skeptical.png`: Snarky for check-in reminders
-- Images available for download at: `/images/gremlin-*.png` in the public folder
+**Visual Characters**: App uses emojis for character expressions across screens:
+- Welcome screen: 👾 (space invader - playful gremlin mascot)
+- Aspiration screen: 🤔 (thinking face)
+- Assistant screen: 🤔 (thinking face, spins while generating)
+- Check-in screen: 🎉 (celebration) when completed, 🤨 (skeptical) when pending
+- Trophy screen: 🎉 (celebration) for unlocking achievements
 
 **UX Improvements**:
 - Added Enter key handlers to aspiration input and manual goal fields for faster form submission
