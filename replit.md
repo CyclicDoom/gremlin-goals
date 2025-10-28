@@ -10,6 +10,12 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ### Latest Updates: Design System Refinement & AI Integration
 
+**Aspiration Screen Styling Fixed** (October 28, 2025): 
+- Updated button to use "success" gradient variant instead of unstyled "secondary"
+- Applied proper Outfit font sizing (text-3xl) and weight (font-bold) to match design system
+- Button size increased to "xl" for consistency with other screens
+- Screen now fully adheres to established design system
+
 **AI Integration Fixed**: Set up JavaScript OpenAI AI Integrations blueprint to resolve the "AI gateway is not enabled" error. The app now properly uses Replit-managed OpenAI access with environment variables configured automatically.
 
 **Typography Upgrade**: Replaced Fredoka with **Outfit** font - a more elegant, modern geometric typeface that maintains the playful feel while being less bold and more refined.
@@ -26,10 +32,11 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 - All components now use design system tokens instead of custom classes
 
 **Custom Gremlin Character Assets**: Replaced emoji placeholders with custom-generated gremlin illustrations:
-- `gremlin-welcome.png`: Friendly mascot for welcome screen
+- `gremlin-welcome.png`: Friendly mascot for welcome screen (Note: AI-generated images have white backgrounds - manual removal recommended)
 - `gremlin-thinking.png`: Contemplative for aspiration/assistant screens
 - `gremlin-celebrating.png`: Happy for trophy/success states
 - `gremlin-skeptical.png`: Snarky for check-in reminders
+- Images available for download at: `/images/gremlin-*.png` in the public folder
 
 **UX Improvements**:
 - Added Enter key handlers to aspiration input and manual goal fields for faster form submission
