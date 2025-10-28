@@ -7,8 +7,7 @@ export async function POST(request: Request) {
 
     // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
     const openai = createOpenAI({
-      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY,
     })
 
     const { text } = await generateText({
