@@ -192,9 +192,9 @@ export default function GremlinGoals() {
                 Gremlin Goals
               </CardTitle>
               <div className="relative">
-                <div className="absolute -left-4 -top-2 text-4xl">💬</div>
-                <p className="text-foreground/80 text-lg leading-relaxed pl-8 italic">
-                  No fluff. No fake motivation. Just you, a goal, and your excuses.
+                <p className="text-foreground/80 text-lg leading-relaxed italic">
+                  No fluff. No fake motivation.<br />
+                  Just you, a goal, and your excuses.
                 </p>
               </div>
             </CardHeader>
