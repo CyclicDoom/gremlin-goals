@@ -13,6 +13,7 @@ export async function POST(request: Request) {
 
     const { text } = await generateText({
       model: openai("gpt-5"),
+      temperature: 1, // GPT-5 only supports temperature=1
       prompt: `You are a brutally honest goal-setting assistant. A user wants to work on: "${aspiration}"
 
 Your job is to suggest 3 micro-goals that are:
