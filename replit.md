@@ -8,6 +8,45 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ## Recent Changes (October 28, 2025)
 
+### Complete UI Redesign with Personality & Brand
+
+Transformed the app from a minimal dark theme to a vibrant, playful experience that embodies the snarky gremlin personality.
+
+#### Design System:
+
+- **Vibrant Color Palette**:
+  - Electric purple (primary): `hsl(271 81% 56%)`
+  - Neon green (secondary): `hsl(142 76% 73%)`
+  - Hot pink (accent): `hsl(330 81% 60%)`
+  - Yellow highlights: `hsl(48 96% 53%)`
+  - Deep charcoal background with subtle gradients
+
+- **Typography**:
+  - Fredoka font for playful display headings
+  - Inter font for clean body text
+  - Better hierarchy with gradient text effects
+
+- **Animation System**:
+  - Custom animations: slide-up, pop, wiggle, bounce-subtle, glow, gradient
+  - Smooth transitions on all interactive elements
+  - Button hover effects with scale and glow
+  - Accessibility: Full `prefers-reduced-motion` support
+
+- **Visual Elements**:
+  - Placeholder gremlin character (👺 emoji) throughout
+  - Speech bubbles for snarky comments
+  - Rough card borders with gradient effects
+  - Backdrop blur on cards for depth
+  - Glow effects on interactive elements
+
+#### Screen Redesigns:
+
+1. **Welcome Screen**: Bouncing gremlin, gradient title, glowing CTA button
+2. **Aspiration Screen**: Gremlin with speech bubble, styled input with focus states
+3. **Assistant Screen**: AI/Manual toggle with vibrant colors, animated goal cards
+4. **Check-in Screen**: Big satisfying buttons, streak counter with fire emoji
+5. **Trophy Screen**: Celebration with glowing trophy, bouncing animations
+
 ### Dynamic Goal Generation Feature
 
 Replaced hardcoded fallback values with a flexible system that allows users to choose between:
