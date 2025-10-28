@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -173,8 +174,15 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="text-8xl mb-4 animate-bounce-subtle">
-              👺
+            <div className="mb-4 animate-bounce-subtle flex justify-center">
+              <Image 
+                src="/images/gremlin-welcome.png" 
+                alt="Gremlin mascot" 
+                width={200} 
+                height={200}
+                priority
+                className="drop-shadow-2xl"
+              />
             </div>
           </div>
           
@@ -193,7 +201,9 @@ export default function GremlinGoals() {
             <CardContent className="pt-0">
               <Button
                 onClick={() => setCurrentScreen("aspiration")}
-                className="w-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-bold py-6 text-xl rounded-xl shadow-lg gremlin-glow transition-all duration-300 hover:scale-105 active:scale-95"
+                variant="gremlin"
+                size="xl"
+                className="w-full font-bold"
               >
                 <Zap className="w-5 h-5 mr-2" />
                 Let's Go
@@ -212,8 +222,14 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="text-7xl mb-3 animate-wiggle">
-              👺
+            <div className="mb-3 animate-wiggle flex justify-center">
+              <Image 
+                src="/images/gremlin-thinking.png" 
+                alt="Thinking gremlin" 
+                width={160} 
+                height={160}
+                className="drop-shadow-2xl"
+              />
             </div>
             <div className="relative inline-block">
               <div className="bg-muted/90 backdrop-blur px-6 py-3 rounded-2xl border-2 border-secondary/50 shadow-lg">
@@ -235,13 +251,20 @@ export default function GremlinGoals() {
               <Input
                 value={aspirationInput}
                 onChange={(e) => setAspirationInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && aspirationInput.trim()) {
+                    setCurrentScreen("assistant")
+                  }
+                }}
                 placeholder="Be honest..."
                 className="bg-input/50 border-2 border-border focus:border-secondary focus:ring-secondary/50 text-foreground placeholder-muted-foreground text-lg py-6 rounded-xl transition-all duration-200"
               />
               <Button
                 onClick={() => setCurrentScreen("assistant")}
                 disabled={!aspirationInput.trim()}
-                className="w-full bg-gradient-to-r from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary text-secondary-foreground font-bold py-6 text-lg rounded-xl shadow-lg gremlin-glow-green transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                variant="secondary"
+                size="lg"
+                className="w-full font-bold"
               >
                 Next
               </Button>
@@ -263,8 +286,14 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="text-7xl mb-3">
-              {isGenerating ? <span className="animate-spin inline-block">👺</span> : "👺"}
+            <div className="mb-3 flex justify-center">
+              <Image 
+                src="/images/gremlin-thinking.png" 
+                alt="Gremlin assistant" 
+                width={160} 
+                height={160}
+                className={`drop-shadow-2xl ${isGenerating ? "animate-spin" : ""}`}
+              />
             </div>
           </div>
           
@@ -287,24 +316,18 @@ export default function GremlinGoals() {
                     <div className="flex gap-3">
                       <Button
                         onClick={() => setGoalMode("ai")}
-                        variant={goalMode === "ai" ? "default" : "outline"}
-                        className={`flex-1 py-6 text-base font-bold rounded-xl transition-all duration-200 ${
-                          goalMode === "ai" 
-                            ? "bg-gradient-to-r from-primary to-accent text-primary-foreground gremlin-glow shadow-lg scale-105" 
-                            : "border-2 hover:border-primary/50 hover:bg-primary/10"
-                        }`}
+                        variant={goalMode === "ai" ? "gremlin" : "outline"}
+                        size="lg"
+                        className="flex-1 font-bold"
                       >
                         <Sparkles className="w-4 h-4 mr-2" />
                         AI Generated
                       </Button>
                       <Button
                         onClick={() => setGoalMode("manual")}
-                        variant={goalMode === "manual" ? "default" : "outline"}
-                        className={`flex-1 py-6 text-base font-bold rounded-xl transition-all duration-200 ${
-                          goalMode === "manual" 
-                            ? "bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground gremlin-glow-green shadow-lg scale-105" 
-                            : "border-2 hover:border-secondary/50 hover:bg-secondary/10"
-                        }`}
+                        variant={goalMode === "manual" ? "secondary" : "outline"}
+                        size="lg"
+                        className="flex-1 font-bold"
                       >
                         <Target className="w-4 h-4 mr-2" />
                         Manual Entry
@@ -338,6 +361,11 @@ export default function GremlinGoals() {
                               setManualGoals(newGoals)
                               setErrorMessage("")
                             }}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" && canGenerate) {
+                                generateMicroGoals()
+                              }
+                            }}
                             placeholder={`e.g., ${index === 0 ? "Write one sentence" : index === 1 ? "Do 5 push-ups" : "Read one page"}`}
                             className="bg-input/50 border-2 border-border focus:border-secondary focus:ring-secondary/50 text-foreground placeholder-muted-foreground rounded-xl transition-all duration-200"
                           />
@@ -364,7 +392,9 @@ export default function GremlinGoals() {
                   <Button 
                     onClick={generateMicroGoals} 
                     disabled={!canGenerate}
-                    className="w-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] hover:bg-[position:right_center] text-white font-bold py-6 text-lg rounded-xl shadow-lg gremlin-glow transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                    variant="gremlin"
+                    size="lg"
+                    className="w-full font-bold"
                   >
                     <Target className="w-5 h-5 mr-2" />
                     {goalMode === "ai" ? "Generate with AI" : "Use These Goals"}
@@ -421,8 +451,10 @@ export default function GremlinGoals() {
                         <p className="font-bold text-lg text-foreground">"{selectedGoal}"</p>
                       </div>
                       <Button 
-                        onClick={lockInGoal} 
-                        className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent text-accent-foreground font-bold py-6 text-lg rounded-xl shadow-lg gremlin-glow-pink transition-all duration-300 hover:scale-105 active:scale-95"
+                        onClick={lockInGoal}
+                        variant="gremlin-pink"
+                        size="lg"
+                        className="w-full font-bold"
                       >
                         🔒 Lock it in
                       </Button>
@@ -447,8 +479,14 @@ export default function GremlinGoals() {
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
-            <div className="text-7xl mb-3">
-              {canCheckInToday ? "👺" : hasCheckedInToday ? "😊" : "👺"}
+            <div className="mb-3 flex justify-center">
+              <Image 
+                src={hasCheckedInToday ? "/images/gremlin-celebrating.png" : "/images/gremlin-skeptical.png"} 
+                alt="Gremlin check-in" 
+                width={160} 
+                height={160}
+                className="drop-shadow-2xl"
+              />
             </div>
           </div>
           
@@ -494,14 +532,18 @@ export default function GremlinGoals() {
                   <div className="grid grid-cols-2 gap-4">
                     <Button
                       onClick={() => handleCheckIn(true)}
-                      className="bg-gradient-to-br from-secondary to-secondary/80 hover:from-secondary/90 hover:to-secondary text-secondary-foreground font-bold py-8 text-xl rounded-xl shadow-lg gremlin-glow-green transition-all duration-300 hover:scale-105 active:scale-95"
+                      variant="success"
+                      size="xl"
+                      className="font-bold"
                     >
                       <span className="text-3xl mb-1">✅</span>
                       <span className="block text-base">Yes</span>
                     </Button>
                     <Button
                       onClick={() => handleCheckIn(false)}
-                      className="bg-gradient-to-br from-destructive to-destructive/80 hover:from-destructive/90 hover:to-destructive text-destructive-foreground font-bold py-8 text-xl rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                      variant="destructive"
+                      size="xl"
+                      className="font-bold"
                     >
                       <span className="text-3xl mb-1">❌</span>
                       <span className="block text-base">No</span>
@@ -541,8 +583,14 @@ export default function GremlinGoals() {
         
         <div className="animate-pop relative z-10 w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="text-8xl mb-4 animate-bounce-subtle">
-              🎉
+            <div className="mb-4 animate-bounce-subtle flex justify-center">
+              <Image 
+                src="/images/gremlin-celebrating.png" 
+                alt="Celebrating gremlin" 
+                width={200} 
+                height={200}
+                className="drop-shadow-2xl"
+              />
             </div>
           </div>
           
@@ -574,8 +622,10 @@ export default function GremlinGoals() {
             
             <CardContent>
               <Button 
-                onClick={() => setCurrentScreen("checkin")} 
-                className="w-full bg-gradient-to-r from-gremlin-yellow to-gremlin-yellow/80 hover:from-gremlin-yellow/90 hover:to-gremlin-yellow text-secondary-foreground font-bold py-6 text-xl rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                onClick={() => setCurrentScreen("checkin")}
+                variant="gremlin"
+                size="xl"
+                className="w-full font-bold"
               >
                 <PartyPopper className="w-5 h-5 mr-2" />
                 Continue

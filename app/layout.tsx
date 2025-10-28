@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Fredoka } from "next/font/google"
+import { Inter, Outfit } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ 
@@ -9,9 +9,9 @@ const inter = Inter({
   display: 'swap',
 })
 
-const fredoka = Fredoka({ 
+const outfit = Outfit({ 
   subsets: ["latin"],
-  variable: '--font-fredoka',
+  variable: '--font-outfit',
   weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${fredoka.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
