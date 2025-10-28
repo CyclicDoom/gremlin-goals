@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { SegmentedControl } from "@/components/ui/segmented-control"
 import { Loader2, Trophy, Target, Calendar, AlertCircle, Sparkles, Zap, PartyPopper } from "lucide-react"
 
 type Screen = "welcome" | "aspiration" | "assistant" | "checkin" | "trophy"
@@ -313,26 +314,15 @@ export default function GremlinGoals() {
                 <>
                   <div className="space-y-3">
                     <p className="text-sm text-muted-foreground font-medium">Choose your method:</p>
-                    <div className="flex gap-3">
-                      <Button
-                        onClick={() => setGoalMode("ai")}
-                        variant={goalMode === "ai" ? "gremlin" : "outline"}
-                        size="lg"
-                        className="flex-1 font-bold"
-                      >
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        AI Generated
-                      </Button>
-                      <Button
-                        onClick={() => setGoalMode("manual")}
-                        variant={goalMode === "manual" ? "secondary" : "outline"}
-                        size="lg"
-                        className="flex-1 font-bold"
-                      >
-                        <Target className="w-4 h-4 mr-2" />
-                        Manual Entry
-                      </Button>
-                    </div>
+                    <SegmentedControl
+                      options={[
+                        { value: "ai", label: "AI Generated", icon: <Sparkles className="w-4 h-4" /> },
+                        { value: "manual", label: "Manual Entry", icon: <Target className="w-4 h-4" /> },
+                      ]}
+                      value={goalMode}
+                      onChange={(value) => setGoalMode(value as GoalMode)}
+                      className="w-full"
+                    />
                   </div>
 
                   {goalMode === "ai" && (
@@ -367,7 +357,7 @@ export default function GremlinGoals() {
                               }
                             }}
                             placeholder={`e.g., ${index === 0 ? "Write one sentence" : index === 1 ? "Do 5 push-ups" : "Read one page"}`}
-                            className="bg-input/50 border-2 border-border focus:border-secondary focus:ring-secondary/50 text-foreground placeholder-muted-foreground rounded-xl transition-all duration-200"
+                            className="bg-input/50 border-2 border-border focus:border-accent focus:ring-accent/50 text-foreground placeholder-muted-foreground rounded-xl transition-all duration-200"
                           />
                         </div>
                       ))}

@@ -10,6 +10,13 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ### Latest Updates: Design System Refinement & AI Integration
 
+**Segmented Control Component Added** (October 28, 2025):
+- Created custom segmented control UI component for mode selection
+- Replaced button group on assistant screen (step 3) with iOS-style segmented control
+- Control uses purple-to-pink gradient for active state with glow effect
+- Inactive states show subtle hover effects without button appearance
+- Manual entry input fields now use pink accent focus states (matching theme)
+
 **Aspiration Screen Styling Fixed** (October 28, 2025): 
 - Updated button to use "gremlin-pink" gradient variant (hot pink) instead of green "success" variant
 - Applied proper Outfit font sizing (text-3xl) and weight (font-bold) to match design system
