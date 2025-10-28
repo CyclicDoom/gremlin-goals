@@ -218,7 +218,7 @@ export default function GremlinGoals() {
   if (currentScreen === "aspiration") {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-gremlin-green/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-accent/10" />
         
         <div className="animate-slide-up relative z-10 w-full max-w-md">
           <div className="text-center mb-6">
@@ -232,16 +232,16 @@ export default function GremlinGoals() {
               />
             </div>
             <div className="relative inline-block">
-              <div className="bg-muted/90 backdrop-blur px-6 py-3 rounded-2xl border-2 border-secondary/50 shadow-lg">
+              <div className="bg-muted/90 backdrop-blur px-6 py-3 rounded-2xl border-2 border-accent/50 shadow-lg">
                 <p className="text-sm font-medium text-foreground/90">
                   Let's be honest here...
                 </p>
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-muted/90 rotate-45 border-r-2 border-b-2 border-secondary/50"></div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-muted/90 rotate-45 border-r-2 border-b-2 border-accent/50"></div>
             </div>
           </div>
           
-          <Card className="rough-card border-2 border-secondary/30 bg-card/95 backdrop-blur shadow-2xl">
+          <Card className="rough-card border-2 border-accent/30 bg-card/95 backdrop-blur shadow-2xl">
             <CardHeader>
               <CardTitle className="text-3xl font-display font-bold text-foreground">
                 What's something you wish you were doing more of, but aren't?
@@ -257,12 +257,12 @@ export default function GremlinGoals() {
                   }
                 }}
                 placeholder="Be honest..."
-                className="bg-input/50 border-2 border-border focus:border-secondary focus:ring-secondary/50 text-foreground placeholder-muted-foreground text-lg py-6 rounded-xl transition-all duration-200"
+                className="bg-input/50 border-2 border-border focus:border-accent focus:ring-accent/50 text-foreground placeholder-muted-foreground text-lg py-6 rounded-xl transition-all duration-200"
               />
               <Button
                 onClick={() => setCurrentScreen("assistant")}
                 disabled={!aspirationInput.trim()}
-                variant="success"
+                variant="gremlin-pink"
                 size="xl"
                 className="w-full font-bold"
               >
