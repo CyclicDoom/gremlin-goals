@@ -497,18 +497,18 @@ export default function GremlinGoals() {
                   <div className="grid grid-cols-2 gap-4">
                     <Button
                       onClick={() => handleCheckIn(true)}
-                      variant="success"
+                      variant="gremlin"
                       size="xl"
-                      className="font-bold"
+                      className="font-bold flex-col"
                     >
                       <span className="text-3xl mb-1">✅</span>
                       <span className="block text-base">Yes</span>
                     </Button>
                     <Button
                       onClick={() => handleCheckIn(false)}
-                      variant="destructive"
+                      variant="gremlin-pink"
                       size="xl"
-                      className="font-bold"
+                      className="font-bold flex-col"
                     >
                       <span className="text-3xl mb-1">❌</span>
                       <span className="block text-base">No</span>

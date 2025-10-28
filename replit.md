@@ -10,6 +10,12 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ### Latest Updates: Design System Refinement & AI Integration
 
+**Check-in Screen Button Update** (October 28, 2025):
+- Updated Yes/No buttons to match purple-pink brand colors
+- Yes button uses "gremlin" purple gradient (replacing green)
+- No button uses "gremlin-pink" hot pink gradient (replacing red)
+- Maintains playful emoji design with brand-consistent styling
+
 **Segmented Control Component Added** (October 28, 2025):
 - Created custom segmented control UI component for mode selection
 - Replaced button group on assistant screen (step 3) with iOS-style segmented control
