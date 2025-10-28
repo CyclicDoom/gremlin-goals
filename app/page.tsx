@@ -243,7 +243,7 @@ export default function GremlinGoals() {
           
           <Card className="rough-card border-2 border-secondary/30 bg-card/95 backdrop-blur shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl font-display text-foreground">
+              <CardTitle className="text-3xl font-display font-bold text-foreground">
                 What's something you wish you were doing more of, but aren't?
               </CardTitle>
             </CardHeader>
@@ -262,8 +262,8 @@ export default function GremlinGoals() {
               <Button
                 onClick={() => setCurrentScreen("assistant")}
                 disabled={!aspirationInput.trim()}
-                variant="secondary"
-                size="lg"
+                variant="success"
+                size="xl"
                 className="w-full font-bold"
               >
                 Next
