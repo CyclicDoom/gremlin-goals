@@ -12,15 +12,19 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 Replaced hardcoded fallback values with a flexible system that allows users to choose between:
 
-1. **AI-Generated Goals**: Users provide their own OpenAI API key to generate personalized micro-goals based on their aspirations
+1. **AI-Generated Goals**: Instant AI-powered goal generation using Replit AI Integrations (no API key needed!)
 2. **Manual Entry**: Users can enter their own custom 3 micro-goals
 
 #### Key Implementation Details:
 
-- **Mode Selection UI**: Toggle between "Manual Entry" and "AI Generated" modes
-- **API Key Input**: Secure password field for users to provide their OpenAI API key
-  - API keys are stored in session state only (never persisted to backend)
-  - Users see a notice that keys are only used for the current session
+- **Replit AI Integrations**: 
+  - Uses Replit-managed OpenAI access (gpt-5 model)
+  - No API key required from users
+  - Seamless authentication via Replit environment variables
+  - Costs billed to developer's Replit credits
+- **Mode Selection UI**: Simple toggle between "AI Generated" and "Manual Entry" modes
+  - AI mode is the default for best user experience
+  - No authentication barriers for users
 - **Manual Goal Entry**: Three input fields with example placeholders
   - Inline validation shows helper text when fields are incomplete
   - Button disabled until all 3 goals are filled
@@ -28,9 +32,10 @@ Replaced hardcoded fallback values with a flexible system that allows users to c
   - AI mode displays clear error messages for API failures
   - Users can retry without reloading the page
   - Manual mode provides immediate guidance when fields are incomplete
-- **API Route**: Updated to accept user-provided API keys and use them for OpenAI calls
-  - Returns descriptive errors for invalid keys or API failures
+- **API Route**: Uses Replit AI Integrations environment variables
+  - Returns descriptive errors for API failures
   - No hardcoded fallback values
+  - Upgraded to gpt-5 (latest OpenAI model)
 
 ## Project Architecture
 
@@ -90,5 +95,6 @@ The app runs on port 5000 and is accessible at http://0.0.0.0:5000
 ## Notes
 
 - The app uses localStorage to persist user state between sessions
-- OpenAI API keys are handled securely and never logged or stored on the server
+- AI generation uses Replit AI Integrations - no user API keys needed
 - The interface includes snarky, motivational feedback to encourage consistency
+- AI costs are billed to the developer's Replit credits, making it seamless for end users
