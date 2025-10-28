@@ -26,7 +26,15 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 - Input focus states now use pink accent instead of green
 - Screen now fully adheres to established purple/pink design system
 
-**AI Integration Fixed**: Set up JavaScript OpenAI AI Integrations blueprint to resolve the "AI gateway is not enabled" error. The app now properly uses Replit-managed OpenAI access with environment variables configured automatically.
+**AI Integration Status**: The app is configured to use Replit AI Integrations (Replit-managed OpenAI access), which provides OpenAI API access without requiring your own API key. 
+
+**Important**: Replit AI Integrations requires a paid Replit plan. Free users will need to provide their own OpenAI API key. If you see "AI Gateway is not enabled for your account" errors, this means:
+- You're on a free Replit plan, OR
+- You're in a Team/Enterprise organization where AI Integrations are disabled
+
+**Options**:
+1. Upgrade to a paid Replit plan to use Replit-managed OpenAI (recommended - no API key needed)
+2. Switch to using your own OpenAI API key (requires OPENAI_API_KEY environment variable)
 
 **Typography Upgrade**: Replaced Fredoka with **Outfit** font - a more elegant, modern geometric typeface that maintains the playful feel while being less bold and more refined.
 
@@ -101,11 +109,12 @@ Replaced hardcoded fallback values with a flexible system that allows users to c
 
 #### Key Implementation Details:
 
-- **Replit AI Integrations**: 
+- **Replit AI Integrations** (requires paid Replit plan):
   - Uses Replit-managed OpenAI access (gpt-5 model)
   - No API key required from users
   - Seamless authentication via Replit environment variables
-  - Costs billed to developer's Replit credits
+  - Costs billed to your Replit credits at public API prices
+  - Available to paying users only (free users must use their own API key)
 - **Mode Selection UI**: Simple toggle between "AI Generated" and "Manual Entry" modes
   - AI mode is the default for best user experience
   - No authentication barriers for users
@@ -179,6 +188,6 @@ The app runs on port 5000 and is accessible at http://0.0.0.0:5000
 ## Notes
 
 - The app uses localStorage to persist user state between sessions
-- AI generation uses Replit AI Integrations - no user API keys needed
+- AI generation uses Replit AI Integrations (requires paid plan) or user's own OpenAI API key
 - The interface includes snarky, motivational feedback to encourage consistency
 - AI costs are billed to the developer's Replit credits, making it seamless for end users
