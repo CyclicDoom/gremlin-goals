@@ -250,7 +250,7 @@ export default function GremlinGoals() {
               <Button
                 onClick={() => setCurrentScreen("assistant")}
                 disabled={!aspirationInput.trim()}
-                variant="gremlin-pink"
+                variant="gremlin"
                 size="xl"
                 className="w-full font-bold"
               >
