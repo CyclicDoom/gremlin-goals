@@ -6,23 +6,9 @@ export async function POST(request: Request) {
     const { aspiration } = await request.json()
 
     // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-    
-    // Check if Replit AI Integrations is available (requires paid Replit plan)
-    const hasAIIntegrations = process.env.AI_INTEGRATIONS_OPENAI_API_KEY && 
-                              process.env.AI_INTEGRATIONS_OPENAI_API_KEY !== "_DUMMY_API_KEY_"
-    
-    // Check if user provided their own OpenAI API key
-    const hasUserApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.length > 0
-    
-    if (!hasAIIntegrations && !hasUserApiKey) {
-      return Response.json({ 
-        error: "OpenAI API key not configured. Either upgrade to a paid Replit plan to use Replit AI Integrations, or provide your own OPENAI_API_KEY environment variable."
-      }, { status: 503 })
-    }
-    
     const openai = createOpenAI({
-      baseURL: hasAIIntegrations ? process.env.AI_INTEGRATIONS_OPENAI_BASE_URL : undefined,
-      apiKey: hasAIIntegrations ? process.env.AI_INTEGRATIONS_OPENAI_API_KEY : process.env.OPENAI_API_KEY,
+      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
     })
 
     const { text } = await generateText({
