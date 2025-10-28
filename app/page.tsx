@@ -34,8 +34,7 @@ export default function GremlinGoals() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [suggestedGoals, setSuggestedGoals] = useState<string[]>([])
   const [selectedGoal, setSelectedGoal] = useState("")
-  const [goalMode, setGoalMode] = useState<GoalMode>("manual")
-  const [apiKey, setApiKey] = useState("")
+  const [goalMode, setGoalMode] = useState<GoalMode>("ai")
   const [manualGoals, setManualGoals] = useState(["", "", ""])
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -90,8 +89,7 @@ export default function GremlinGoals() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
-          aspiration: aspirationInput,
-          apiKey: apiKey || undefined
+          aspiration: aspirationInput
         }),
       })
 
@@ -105,7 +103,7 @@ export default function GremlinGoals() {
       setSuggestedGoals(data.goals)
     } catch (error) {
       console.error("Error generating goals:", error)
-      setErrorMessage(error instanceof Error ? error.message : "Failed to generate goals. Please check your API key and try again.")
+      setErrorMessage(error instanceof Error ? error.message : "Failed to generate goals. Please try again.")
     } finally {
       setIsGenerating(false)
     }
@@ -227,7 +225,7 @@ export default function GremlinGoals() {
   if (currentScreen === "assistant") {
     const canGenerate = goalMode === "manual" 
       ? manualGoals.every(goal => goal.trim() !== "")
-      : goalMode === "ai" && apiKey.trim() !== ""
+      : true
 
     return (
       <div className="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center p-4">
@@ -245,34 +243,26 @@ export default function GremlinGoals() {
                   <p className="text-sm text-gray-400">Choose how to create your micro-goals:</p>
                   <div className="flex gap-2">
                     <Button
-                      onClick={() => setGoalMode("manual")}
-                      variant={goalMode === "manual" ? "default" : "outline"}
-                      className={goalMode === "manual" ? "flex-1 bg-blue-600 hover:bg-blue-700" : "flex-1"}
-                    >
-                      Manual Entry
-                    </Button>
-                    <Button
                       onClick={() => setGoalMode("ai")}
                       variant={goalMode === "ai" ? "default" : "outline"}
                       className={goalMode === "ai" ? "flex-1 bg-purple-600 hover:bg-purple-700" : "flex-1"}
                     >
                       AI Generated
                     </Button>
+                    <Button
+                      onClick={() => setGoalMode("manual")}
+                      variant={goalMode === "manual" ? "default" : "outline"}
+                      className={goalMode === "manual" ? "flex-1 bg-blue-600 hover:bg-blue-700" : "flex-1"}
+                    >
+                      Manual Entry
+                    </Button>
                   </div>
                 </div>
 
                 {goalMode === "ai" && (
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-400">Your OpenAI API Key:</label>
-                    <Input
-                      type="password"
-                      value={apiKey}
-                      onChange={(e) => setApiKey(e.target.value)}
-                      placeholder="sk-..."
-                      className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                    />
                     <p className="text-xs text-gray-500">
-                      Your API key is only used for this session and never stored.
+                      AI will generate personalized micro-goals based on your aspiration.
                     </p>
                   </div>
                 )}
