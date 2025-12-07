@@ -744,12 +744,21 @@ export default function GremlinGoals() {
                     {appState.activeGoal?.streak || 0}/{appState.activeGoal?.streakTarget || 3} 🔥
                   </Badge>
                 </div>
-                <button 
-                  onClick={resetApp} 
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors underline font-medium"
-                >
-                  Reset
-                </button>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={devTriggerLevelUp} 
+                    className="text-xs text-accent hover:text-accent/80 transition-colors underline font-medium"
+                    title="Dev: Test Level Up"
+                  >
+                    🧪 Test
+                  </button>
+                  <button 
+                    onClick={resetApp} 
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline font-medium"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
               
               <div className="w-full bg-muted/50 rounded-full h-2 overflow-hidden">
