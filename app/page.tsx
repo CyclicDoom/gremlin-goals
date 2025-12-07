@@ -400,11 +400,13 @@ export default function GremlinGoals() {
     triggerLevelUpWithState(newState)
   }
 
-  if (typeof window !== "undefined") {
-    (window as any).devTriggerLevelUp = devTriggerLevelUp;
-    (window as any).devShowJourney = () => setCurrentScreen("journey");
-    (window as any).devShowTrophy = () => setCurrentScreen("trophy");
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).devTriggerLevelUp = devTriggerLevelUp;
+      (window as any).devShowJourney = () => setCurrentScreen("journey");
+      (window as any).devShowTrophy = () => setCurrentScreen("trophy");
+    }
+  })
 
   const getSnarkyFeedback = (completed: boolean, streak: number) => {
     if (completed) {
