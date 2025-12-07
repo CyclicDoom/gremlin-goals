@@ -8,6 +8,55 @@ Gremlin Goals is a Next.js application that helps users break down aspirations i
 
 ## Recent Changes (December 7, 2025)
 
+### Progressive Goal Advancement System (December 7, 2025)
+
+**New "Level Up" Feature**: Users can now progress through increasingly ambitious goals as they build consistency.
+
+**How It Works**:
+1. Complete your streak target (starts at 3 days)
+2. AI generates a harder goal based on what you just mastered
+3. Accept the new challenge or re-roll for a different option
+4. Track your journey from tiny steps to your aspiration
+
+**New Screens**:
+- **Level Up Modal** (🚀): Celebratory screen when completing a streak, shows new goal with AI-generated rationale
+- **Progression Journey** (📈): Timeline view of all completed goals showing progression
+
+**Technical Implementation**:
+- **localStorage Schema V2**: Upgraded from flat state to structured data with goal history
+  - `activeGoal`: Tracks current goal with level, streak, and streakTarget
+  - `history`: Array of completed GoalRecords with metadata
+  - Automatic migration from V1 schema for existing users
+- **Smart Streak Targets**: Days required increases with level (3→5→7)
+- **Contextual AI Generation**: API now accepts previous goal context for smarter progression
+- **Re-roll Capability**: Users can request alternative goals if they don't like the suggestion
+
+**New Data Types**:
+```typescript
+interface GoalRecord {
+  id: string
+  goalText: string
+  level: number
+  generatedBy: "ai" | "manual"
+  startedAt: string
+  completedAt: string
+  streakAchieved: number
+  rationale?: string
+}
+
+interface ActiveGoal {
+  id: string
+  text: string
+  level: number
+  streak: number
+  streakTarget: number
+  startedAt: string
+  lastCheckIn: string | null
+}
+```
+
+---
+
 ### Major Framework Migration: Next.js 16 & Tailwind CSS 4
 
 **Next.js 16 Upgrade** (December 7, 2025):
@@ -220,9 +269,14 @@ The app runs on port 5000 and is accessible at http://0.0.0.0:5000
    - Manual mode: Enter custom goals
 3. **Goal Selection**: Pick one goal to commit to
 4. **Daily Check-in**: Track daily completion (Yes/No)
-5. **Streak Tracking**: Monitor consecutive days of completion
+5. **Streak Tracking**: Monitor consecutive days of completion with progress bar
 6. **Trophy System**: Unlock "Rat of Routine" trophy at 3-day streak
-7. **Snarky Feedback**: Brutally honest responses to keep users motivated
+7. **Progressive Goal System**: 
+   - Level up to harder goals after completing streak targets
+   - AI generates contextually harder goals based on progress
+   - Re-roll option for alternative goal suggestions
+8. **Journey View**: Timeline showing all completed goals and progression
+9. **Snarky Feedback**: Brutally honest responses to keep users motivated
 
 ## Notes
 

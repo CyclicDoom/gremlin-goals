@@ -3,17 +3,14 @@ import { createOpenAI } from "@ai-sdk/openai"
 
 export async function POST(request: Request) {
   try {
-    const { aspiration } = await request.json()
+    const body = await request.json()
+    const { aspiration, mode = "initial", previousGoal, previousLevel, streakAchieved, goalHistory = [], reroll } = body
 
-    // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-    
     // Determine which API configuration to use
-    // If AI_INTEGRATIONS_OPENAI_BASE_URL contains localhost, it won't work outside Replit
     const aiIntegrationsUrl = process.env.AI_INTEGRATIONS_OPENAI_BASE_URL || ""
     const isReplitEnvironment = aiIntegrationsUrl.includes("localhost") || aiIntegrationsUrl.includes("127.0.0.1")
     const hasUserApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.length > 0
     
-    // Use user's API key if we're not in Replit environment, otherwise use AI Integrations
     const useUserApiKey = !isReplitEnvironment || !aiIntegrationsUrl
     
     if (useUserApiKey && !hasUserApiKey) {
@@ -30,9 +27,59 @@ export async function POST(request: Request) {
     // Use gpt-5 for Replit AI Integrations, gpt-5-mini for standard OpenAI API
     const modelName = useUserApiKey ? "gpt-5-mini" : "gpt-5"
     
+    if (mode === "levelup") {
+      // Generate a harder goal based on the previous one
+      const historyContext = goalHistory.length > 0 
+        ? `\n\nPrevious goals they've completed:\n${goalHistory.map((g: string, i: number) => `${i + 1}. "${g}"`).join('\n')}`
+        : ""
+      
+      const { text } = await generateText({
+        model: openai(modelName),
+        temperature: 1,
+        prompt: `You are a brutally honest goal-setting assistant helping someone progress toward their aspiration.
+
+USER'S ASPIRATION: "${aspiration}"
+
+LAST GOAL COMPLETED: "${previousGoal}"
+They successfully completed this for ${streakAchieved} days straight. They're now at Level ${previousLevel}.
+${historyContext}
+
+Your job is to suggest ONE slightly more ambitious micro-goal that:
+- Builds on what they just accomplished
+- Is still under 2 minutes to complete
+- Brings them closer to their aspiration
+- Is a natural next step (not a huge jump)
+- Is specific and measurable
+
+${reroll ? "IMPORTANT: Generate a DIFFERENT goal than before. Be creative but keep it achievable." : ""}
+
+Be direct. No motivational fluff.
+
+Respond with a JSON object like:
+{
+  "goal": "Do 10 jumping jacks and 5 squats",
+  "rationale": "You mastered 5 jumping jacks, so we're adding squats to build full-body movement.",
+  "streakTarget": 3
+}
+
+Use streakTarget of 3 for levels 1-2, 5 for levels 3-4, and 7 for level 5+.
+
+Only return the JSON object, nothing else.`,
+      })
+
+      const parsed = JSON.parse(text.trim())
+      
+      return Response.json({
+        goal: parsed.goal,
+        rationale: parsed.rationale,
+        streakTarget: parsed.streakTarget || 3,
+      })
+    }
+    
+    // Initial goal generation (3 options)
     const { text } = await generateText({
       model: openai(modelName),
-      temperature: 1, // GPT-5 family only supports temperature=1
+      temperature: 1,
       prompt: `You are a brutally honest goal-setting assistant. A user wants to work on: "${aspiration}"
 
 Your job is to suggest 3 micro-goals that are:
