@@ -473,7 +473,7 @@ export default function GremlinGoals() {
                   className="w-full border-2 border-primary/30 hover:bg-primary/10"
                 >
                   <History className="w-4 h-4 mr-2" />
-                  View My Journey ({appState.history.length} goals completed)
+                  Show me the receipts ({appState.history.length} done)
                 </Button>
               )}
             </CardContent>
@@ -791,7 +791,7 @@ export default function GremlinGoals() {
                   className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
                 >
                   <History className="w-4 h-4" />
-                  View my journey ({appState.history.length} goals mastered)
+                  Show me the receipts ({appState.history.length} done)
                   <ChevronRight className="w-4 h-4" />
                 </button>
               )}
@@ -867,14 +867,14 @@ export default function GremlinGoals() {
               <div className="flex justify-center">
                 <Badge className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 text-lg font-bold rounded-full shadow-lg animate-glow">
                   <ArrowUp className="w-5 h-5 mr-2" />
-                  LEVEL UP!
+                  LEVEL UP
                 </Badge>
               </div>
               <CardTitle className="text-3xl font-display font-bold text-foreground">
-                You crushed it!
+                Fine. You actually did it.
               </CardTitle>
               <p className="text-muted-foreground">
-                You completed "{appState.activeGoal?.text}" for {appState.activeGoal?.streakTarget} days straight.
+                "{appState.activeGoal?.text}" for {appState.activeGoal?.streakTarget} days. Didn't think you had it in you.
               </p>
             </CardHeader>
             
@@ -882,7 +882,7 @@ export default function GremlinGoals() {
               {isGeneratingLevelUp ? (
                 <div className="flex flex-col items-center justify-center py-8 space-y-4">
                   <Loader2 className="w-12 h-12 animate-spin text-primary" />
-                  <p className="text-lg font-medium text-foreground">Generating your next challenge...</p>
+                  <p className="text-lg font-medium text-foreground">Finding something harder...</p>
                 </div>
               ) : levelUpData ? (
                 <>
@@ -892,7 +892,7 @@ export default function GremlinGoals() {
                         Level {levelUpData.level}
                       </Badge>
                       <Badge variant="outline" className="border-accent/50 text-accent">
-                        {levelUpData.streakTarget} day goal
+                        {levelUpData.streakTarget} days this time
                       </Badge>
                     </div>
                     <p className="font-bold text-xl text-foreground">"{levelUpData.newGoal}"</p>
@@ -914,7 +914,7 @@ export default function GremlinGoals() {
                       className="w-full font-bold"
                     >
                       <Zap className="w-5 h-5 mr-2" />
-                      Accept Challenge
+                      Fine, I'll do it
                     </Button>
                     <Button
                       onClick={rerollLevelUp}
@@ -924,7 +924,7 @@ export default function GremlinGoals() {
                       disabled={isGeneratingLevelUp}
                     >
                       <Sparkles className="w-4 h-4 mr-2" />
-                      Generate Different Goal
+                      Nah, give me another one
                     </Button>
                   </div>
                 </>
@@ -953,7 +953,7 @@ export default function GremlinGoals() {
               <div className="flex items-center justify-between">
                 <CardTitle className="text-2xl font-display flex items-center gap-2">
                   <History className="w-6 h-6 text-primary" />
-                  Your Journey
+                  The Receipts
                 </CardTitle>
                 <button 
                   onClick={() => setCurrentScreen(appState.activeGoal ? "checkin" : "welcome")} 
@@ -963,14 +963,14 @@ export default function GremlinGoals() {
                 </button>
               </div>
               <p className="text-muted-foreground mt-2">
-                From tiny steps to your aspiration: "{appState.aspiration}"
+                Proof you're not completely hopeless. Goal: "{appState.aspiration}"
               </p>
             </CardHeader>
             
             <CardContent className="space-y-4">
               {appState.history.length === 0 ? (
                 <div className="text-center py-8">
-                  <p className="text-muted-foreground">Complete your first goal streak to start your journey!</p>
+                  <p className="text-muted-foreground">Nothing here yet. Finish a streak first.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -987,7 +987,7 @@ export default function GremlinGoals() {
                         <div className="flex-1">
                           <p className="font-medium text-foreground">"{goal.goalText}"</p>
                           <p className="text-xs text-muted-foreground mt-1">
-                            Completed {goal.streakAchieved} day streak
+                            {goal.streakAchieved} days. Not bad.
                           </p>
                         </div>
                         <span className="text-2xl">✅</span>
