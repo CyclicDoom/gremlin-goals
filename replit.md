@@ -172,9 +172,9 @@ Replaced hardcoded fallback values with a flexible system that allows users to c
 ## Project Architecture
 
 ### Tech Stack
-- **Framework**: Next.js 15.2.4 with React 19
+- **Framework**: Next.js 16.0.7 with React 19 (Turbopack)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom UI components
+- **Styling**: Tailwind CSS 4.0 (CSS-first config) with custom UI components
 - **AI Integration**: OpenAI SDK with user-provided API keys
 - **State Management**: React hooks with localStorage persistence
 
