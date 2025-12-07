@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -207,63 +208,63 @@
     color: transparent;
     background-size: auto;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .animate-glow {
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    
-    .animate-bounce-subtle {
-      animation: bounce-subtle 2s ease-in-out infinite;
-    }
-    
-    .animate-wiggle {
-      animation: wiggle 0.5s ease-in-out;
-    }
-    
-    .animate-pop {
-      animation: pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-    
-    .animate-slide-up {
-      animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .animate-slide-in {
-      animation: slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .animate-gradient {
-      animation: gradient 3s ease infinite;
-    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
   }
   
-  @media (prefers-reduced-motion: reduce) {
-    .animate-glow,
-    .animate-bounce-subtle,
-    .animate-wiggle,
-    .animate-pop,
-    .animate-slide-up,
-    .animate-slide-in,
-    .animate-gradient,
-    .animate-spin,
-    .animate-pulse,
-    .animate-bounce {
-      animation: none !important;
-    }
-    
-    .animate-slide-up,
-    .animate-slide-in,
-    .animate-pop {
-      opacity: 1;
-      transform: none;
-    }
-    
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle 0.5s ease-in-out;
+  }
+  
+  .animate-pop {
+    animation: pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-glow,
+  .animate-bounce-subtle,
+  .animate-wiggle,
+  .animate-pop,
+  .animate-slide-up,
+  .animate-slide-in,
+  .animate-gradient,
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+  
+  .animate-slide-up,
+  .animate-slide-in,
+  .animate-pop {
+    opacity: 1;
+    transform: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

@@ -6,9 +6,37 @@ A no-nonsense goal-tracking app that helps users build habits through micro-goal
 
 Gremlin Goals is a Next.js application that helps users break down aspirations into tiny, achievable micro-goals (under 2 minutes each) and track daily progress with a snarky but motivating interface.
 
+## Recent Changes (December 7, 2025)
+
+### Major Framework Migration: Next.js 16 & Tailwind CSS 4
+
+**Next.js 16 Upgrade** (December 7, 2025):
+- Upgraded from Next.js 15.2.4 to **Next.js 16.0.7**
+- Uses Turbopack by default for faster development builds
+- Removed eslint config (now handled by next lint directly)
+- Added allowedDevOrigins configuration for Replit proxy compatibility
+
+**Tailwind CSS 4 Migration** (December 7, 2025):
+- Upgraded from Tailwind CSS 3.x to **Tailwind CSS 4.0**
+- **CSS-first configuration**: Removed `tailwind.config.ts` - all configuration now lives in CSS
+- New CSS structure:
+  - `@import "tailwindcss"` replaces `@tailwind base/components/utilities`
+  - `@theme { }` block defines all theme tokens (colors, fonts, animations)
+  - `@plugin "tailwindcss-animate"` registers plugins
+- PostCSS updated to use `@tailwindcss/postcss` plugin
+- Theme colors now use `--color-*` namespace (e.g., `--color-primary`)
+- Custom animations defined in `@theme` with `--animate-*` namespace
+
+**Configuration Changes**:
+- `postcss.config.mjs`: Uses `@tailwindcss/postcss` instead of `tailwindcss` + `autoprefixer`
+- `app/globals.css`: Contains all Tailwind configuration via CSS-first approach
+- `tailwind.config.ts`: Deleted (no longer needed with v4)
+
+---
+
 ## Recent Changes (October 28, 2025)
 
-### Latest Updates: Design System Refinement & AI Integration
+### Design System Refinement & AI Integration
 
 **Check-in Screen Button Update** (October 28, 2025):
 - Updated Yes/No buttons to match purple-pink brand colors
