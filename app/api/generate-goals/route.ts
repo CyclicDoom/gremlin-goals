@@ -6,26 +6,18 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { aspiration, mode = "initial", previousGoal, previousLevel, streakAchieved, goalHistory = [], reroll } = body
 
-    // Determine which API configuration to use
-    const aiIntegrationsUrl = process.env.AI_INTEGRATIONS_OPENAI_BASE_URL || ""
-    const isReplitEnvironment = aiIntegrationsUrl.includes("localhost") || aiIntegrationsUrl.includes("127.0.0.1")
-    const hasUserApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.length > 0
-    
-    const useUserApiKey = !isReplitEnvironment || !aiIntegrationsUrl
-    
-    if (useUserApiKey && !hasUserApiKey) {
+    // Use user's own OpenAI API key
+    if (!process.env.OPENAI_API_KEY) {
       return Response.json({ 
         error: "OpenAI API key not configured. Please set OPENAI_API_KEY environment variable."
       }, { status: 503 })
     }
     
     const openai = createOpenAI({
-      baseURL: useUserApiKey ? undefined : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-      apiKey: useUserApiKey ? process.env.OPENAI_API_KEY : process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY,
     })
 
-    // Use gpt-5 for Replit AI Integrations, gpt-5-mini for standard OpenAI API
-    const modelName = useUserApiKey ? "gpt-5-mini" : "gpt-5"
+    const modelName = "gpt-4o-mini"
     
     if (mode === "levelup") {
       // Generate a harder goal based on the previous one
