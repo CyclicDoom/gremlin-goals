@@ -493,14 +493,6 @@ export default function GremlinGoals() {
             <div className="mb-3 animate-wiggle flex justify-center text-7xl">
               🤔
             </div>
-            <div className="relative inline-block">
-              <div className="bg-muted/90 backdrop-blur px-6 py-3 rounded-2xl border-2 border-accent/50 shadow-lg">
-                <p className="text-sm font-medium text-foreground/90">
-                  Let's be honest here...
-                </p>
-              </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-muted/90 rotate-45 border-r-2 border-b-2 border-accent/50"></div>
-            </div>
           </div>
           
           <Card className="rough-card border-2 border-accent/30 bg-card/95 backdrop-blur shadow-2xl">
