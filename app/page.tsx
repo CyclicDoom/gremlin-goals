@@ -745,13 +745,15 @@ export default function GremlinGoals() {
                   </Badge>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button 
-                    onClick={devTriggerLevelUp} 
-                    className="text-xs text-accent hover:text-accent/80 transition-colors underline font-medium"
-                    title="Dev: Test Level Up"
-                  >
-                    🧪 Test
-                  </button>
+                  {process.env.NODE_ENV === "development" && (
+                    <button 
+                      onClick={devTriggerLevelUp} 
+                      className="text-xs text-accent hover:text-accent/80 transition-colors underline font-medium"
+                      title="Dev: Test Level Up"
+                    >
+                      🧪 Test
+                    </button>
+                  )}
                   <button 
                     onClick={resetApp} 
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors underline font-medium"
