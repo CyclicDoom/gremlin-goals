@@ -713,7 +713,7 @@ export default function GremlinGoals() {
                       <button
                         key={index}
                         onClick={() => setSelectedGoal(goal)}
-                        className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 font-medium ${
+                        className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 font-medium cursor-pointer ${
                           selectedGoal === goal
                             ? "bg-gradient-to-r from-primary to-accent border-primary text-primary-foreground shadow-lg gremlin-glow scale-105"
                             : "bg-card/50 border-border text-foreground hover:border-primary/50 hover:bg-primary/10 hover:scale-102"
@@ -786,7 +786,7 @@ export default function GremlinGoals() {
                   {process.env.NODE_ENV === "development" && (
                     <button 
                       onClick={devTriggerLevelUp} 
-                      className="text-xs text-accent hover:text-accent/80 transition-colors underline font-medium"
+                      className="text-xs text-accent hover:text-accent/80 transition-colors underline font-medium cursor-pointer"
                       title="Dev: Test Level Up"
                     >
                       🧪 Test
@@ -794,7 +794,7 @@ export default function GremlinGoals() {
                   )}
                   <button 
                     onClick={resetApp} 
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline font-medium"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline font-medium cursor-pointer"
                   >
                     Reset
                   </button>
@@ -826,7 +826,7 @@ export default function GremlinGoals() {
               {appState.history.length > 0 && (
                 <button
                   onClick={() => setCurrentScreen("journey")}
-                  className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                  className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium cursor-pointer"
                 >
                   <History className="w-4 h-4" />
                   Show me the receipts ({appState.history.length} done)
@@ -995,7 +995,7 @@ export default function GremlinGoals() {
                 </CardTitle>
                 <button 
                   onClick={() => setCurrentScreen(appState.activeGoal ? "checkin" : "welcome")} 
-                  className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                  className="text-sm text-primary hover:text-primary/80 transition-colors font-medium cursor-pointer"
                 >
                   ← Back
                 </button>
