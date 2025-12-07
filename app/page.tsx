@@ -98,6 +98,7 @@ export default function GremlinGoals() {
   const [levelUpData, setLevelUpData] = useState<LevelUpData | null>(null)
   const [isGeneratingLevelUp, setIsGeneratingLevelUp] = useState(false)
   const [pendingAction, setPendingAction] = useState<{ type: "levelup" | "trophy", state: AppStateV2 } | null>(null)
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
   const goalModeRef = useRef<GoalMode>("ai")
 
   useEffect(() => {
@@ -361,14 +362,19 @@ export default function GremlinGoals() {
     }
   }
 
-  const resetApp = () => {
+  const confirmReset = () => {
     setAppState(INITIAL_STATE)
     setAspirationInput("")
     setSuggestedGoals([])
     setSelectedGoal("")
     setLevelUpData(null)
+    setShowResetConfirm(false)
     localStorage.removeItem("gremlin-goals-state")
     setCurrentScreen("welcome")
+  }
+
+  const resetApp = () => {
+    setShowResetConfirm(true)
   }
 
   const devTriggerLevelUp = () => {
@@ -1053,6 +1059,46 @@ export default function GremlinGoals() {
                 className="w-full font-bold"
               >
                 Continue the Streak
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  if (showResetConfirm) {
+    return (
+      <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="animate-pop w-full max-w-sm">
+          <Card className="rough-card border-2 border-destructive/50 bg-card/95 backdrop-blur shadow-2xl">
+            <CardHeader className="text-center space-y-4">
+              <div className="flex justify-center text-6xl">
+                🏳️
+              </div>
+              <CardTitle className="text-2xl font-display font-bold text-foreground">
+                Giving up already?
+              </CardTitle>
+              <p className="text-muted-foreground">
+                All your progress, your streak, your receipts... gone. Classic.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Button
+                onClick={() => setShowResetConfirm(false)}
+                variant="gremlin"
+                size="lg"
+                className="w-full font-bold"
+              >
+                Wait, no. I'll keep going.
+              </Button>
+              <Button
+                onClick={confirmReset}
+                variant="outline"
+                size="lg"
+                className="w-full border-2 border-destructive/30 text-destructive hover:bg-destructive/10"
+              >
+                Yeah, wipe it all
               </Button>
             </CardContent>
           </Card>
