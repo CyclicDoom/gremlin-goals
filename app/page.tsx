@@ -371,6 +371,41 @@ export default function GremlinGoals() {
     setCurrentScreen("welcome")
   }
 
+  const devTriggerLevelUp = () => {
+    if (!appState.activeGoal) {
+      console.log("No active goal - set one first!")
+      return
+    }
+    
+    const completedGoal: GoalRecord = {
+      id: appState.activeGoal.id,
+      goalText: appState.activeGoal.text,
+      level: appState.activeGoal.level,
+      generatedBy: goalModeRef.current,
+      startedAt: appState.activeGoal.startedAt,
+      completedAt: new Date().toISOString(),
+      streakAchieved: appState.activeGoal.streakTarget,
+    }
+    
+    const newState: AppStateV2 = {
+      ...appState,
+      activeGoal: {
+        ...appState.activeGoal,
+        streak: appState.activeGoal.streakTarget,
+      },
+      history: [...appState.history, completedGoal],
+    }
+    
+    setAppState(newState)
+    triggerLevelUpWithState(newState)
+  }
+
+  if (typeof window !== "undefined") {
+    (window as any).devTriggerLevelUp = devTriggerLevelUp;
+    (window as any).devShowJourney = () => setCurrentScreen("journey");
+    (window as any).devShowTrophy = () => setCurrentScreen("trophy");
+  }
+
   const getSnarkyFeedback = (completed: boolean, streak: number) => {
     if (completed) {
       const responses = [
